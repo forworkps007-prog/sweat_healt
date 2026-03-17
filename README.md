@@ -39,7 +39,7 @@
 ---
 
 ## 👤 พัฒนาโดย (Developed by)
-* *ศิริชัย ซาฑี (Sirichai Chatee)*
+* *ศิริชัย ชาที (Sirichai Chatee)*
 * Grade 11 Student (M.5) - Thai Educational System
 * *GitHub:* [forworkps007-prog](https://github.com/forworkps007-prog)
 
