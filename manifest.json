@@ -1,0 +1,16 @@
+{
+  "name": "Sweat Health Dashboard",
+  "short_name": "SweatHealth",
+  "description": "ระบบตรวจสุขภาพจากเหงื่อ",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#2196F3",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2966/2966327.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
