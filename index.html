@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Sweat Health Monitor</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<h1>🩺 Sweat Health Dashboard</h1>
+<p>ระบบตรวจสุขภาพจากเหงื่อ</p>
+
+<div class="card">
+
+<h3>Health Data</h3>
+
+<p>Glucose: <span id="glucose">--</span></p>
+<p>Lactate: <span id="lactate">--</span></p>
+<p>Sodium: <span id="sodium">--</span></p>
+<p>pH: <span id="ph">--</span></p>
+<p>Hydration: <span id="hydration">--</span>%</p>
+
+<button onclick="testData()">อ่านค่า Sensor</button>
+
+</div>
+
+<div class="chartBox">
+
+<canvas id="healthChart"></canvas>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+ส่งแล้ว
+เขียนถึง Sirichai Via Chatee
