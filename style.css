@@ -15,7 +15,12 @@ color:#38bdf8;
 }
 
 .card{
-
+ width: 90%;          /* ให้กว้าง 90% ของหน้าจอ */
+    max-width: 400px;    /* แต่กว้างได้ไม่เกิน 400px ถ้าเปิดในคอม */
+    margin: 20px auto;   /* จัดให้อยู่กึ่งกลางหน้าจอ */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 background:#1e293b;
 width:320px;
 margin:auto;
@@ -45,10 +50,20 @@ background:#16a34a;
 }
 
 .chartBox{
-
+width: 95%;          /* กว้างเกือบเต็มหน้าจอ */
+    max-width: 600px;    /* ไม่ให้ใหญ่เกินไปในจอคอม */
+    margin: 0 auto;
 margin-top:40px;
 width:600px;
 margin-left:auto;
 margin-right:auto;
 
+}
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 1rem;
+    }
 }
