@@ -206,6 +206,7 @@ function testData() {
             chart.data.datasets[0].data.shift();
             chart.data.datasets[1].data.shift();
         }
+let name = localStorage.getItem("currentUser") || "ผู้ใช้งาน"; 
 
         chart.update();
 
