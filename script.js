@@ -1,3 +1,83 @@
+let isLoginMode = true; // สถานะปัจจุบัน: true = login, false = register
+
+// ฟังก์ชันสลับโหมด Login <-> Register
+function toggleAuthMode() {
+    isLoginMode = !isLoginMode;
+    const title = document.getElementById("authTitle");
+    const mainBtn = document.getElementById("mainBtn");
+    const toggleText = document.getElementById("toggleText");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const errorMsg = document.getElementById("authError");
+
+    errorMsg.style.display = "none";
+
+    if (isLoginMode) {
+        title.innerText = "Sweat Health Login";
+        mainBtn.innerText = "เข้าสู่ระบบ";
+        toggleText.innerText = "ยังไม่มีบัญชีใช่ไหม?";
+        toggleBtn.innerText = "สมัครสมาชิก";
+    } else {
+        title.innerText = "Sweat Health Register";
+        mainBtn.innerText = "สมัครสมาชิก";
+        toggleText.innerText = "มีบัญชีอยู่แล้ว?";
+        toggleBtn.innerText = "เข้าสู่ระบบ";
+    }
+}
+
+// ฟังก์ชันจัดการการคลิกปุ่มหลัก
+function handleAuth() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const errorMsg = document.getElementById("authError");
+
+    if (!user || !pass) {
+        errorMsg.innerText = "กรุณากรอกข้อมูลให้ครบ!";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    if (isLoginMode) {
+        // --- ระบบ Login ---
+        const savedPass = localStorage.getItem("user_" + user);
+        if (savedPass && savedPass === pass) {
+            loginSuccess(user);
+        } else {
+            errorMsg.innerText = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!";
+            errorMsg.style.display = "block";
+            playBeep(400, 0.3);
+        }
+    } else {
+        // --- ระบบ Register ---
+        if (localStorage.getItem("user_" + user)) {
+            errorMsg.innerText = "ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว!";
+            errorMsg.style.display = "block";
+        } else {
+            localStorage.setItem("user_" + user, pass); // บันทึกข้อมูลลงเครื่อง
+            speak("สมัครสมาชิกสำเร็จแล้วครับ กรุณาเข้าสู่ระบบ");
+            alert("สมัครสมาชิกสำเร็จ! ลองเข้าสู่ระบบได้เลย");
+            toggleAuthMode(); // สลับกลับไปหน้า Login
+        }
+    }
+}
+
+function loginSuccess(name) {
+    document.getElementById("loginOverlay").style.opacity = "0";
+    setTimeout(() => {
+        document.getElementById("loginOverlay").style.display = "none";
+    }, 500);
+    
+    playBeep(1000, 0.2);
+    speak("ยินดีต้อนรับคุณ " + name + " เข้าสู่ระบบครับ");
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("currentUser", name);
+}
+
+// ตรวจสอบสถานะตอนโหลดหน้าเว็บ
+window.addEventListener('load', () => {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        document.getElementById("loginOverlay").style.display = "none";
+    }
+});
 // ฟังก์ชันเช็คการเข้าสู่ระบบ
 function checkLogin() {
     const user = document.getElementById("username").value;
