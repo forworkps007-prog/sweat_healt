@@ -1,3 +1,32 @@
+// ฟังก์ชันเช็คการเข้าสู่ระบบ
+function checkLogin() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const errorMsg = document.getElementById("loginError");
+
+    // กำหนด Username และ Password (คุณสามารถเปลี่ยนเป็นชื่อคุณได้เลย)
+    if (user === "weir" && pass === "1234") {
+        // ถ้าถูก ให้ซ่อนหน้า Login
+        document.getElementById("loginOverlay").style.display = "none";
+        playBeep(1000, 0.2); // ส่งเสียงแจ้งเตือน
+        speak("ยินดีต้อนรับคุณศิริชัย เข้าสู่ระบบตรวจสุขภาพครับ");
+        
+        // บันทึกสถานะว่า Login แล้ว (ถ้า Refresh จะได้ไม่ต้อง Login ใหม่)
+        localStorage.setItem("isLoggedIn", "true");
+    } else {
+        // ถ้าผิด ให้โชว์ข้อความสีแดง
+        errorMsg.style.display = "block";
+        playBeep(400, 0.3); // เสียงเตือนแบบต่ำ (Error)
+        speak("รหัสผ่านไม่ถูกต้อง โปรดลองใหม่ครับ");
+    }
+}
+
+// ตรวจสอบสถานะตอนโหลดหน้าเว็บ
+window.onload = function() {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        document.getElementById("loginOverlay").style.display = "none";
+    }
+}
 // --- 1. เตรียมตัวแปรสำหรับกราฟ ---
 let chart;
 
