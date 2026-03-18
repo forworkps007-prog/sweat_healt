@@ -214,15 +214,26 @@ function testData() {
         
         // เงื่อนไขการพูดเตือน (AI พากย์ตามจริง)
         if (hydration < 70) {
-            speak('วิเคราะห์เสร็จแล้วครับ คุณเริ่มมีภาวะขาดน้ำ ระดับน้ำอยู่ที่'+ hydration);
+            speak('วิเคราะห์เสร็จแล้วครับ คุน'+ name +'เริ่มมีภาวะขาดน้ำ ระดับน้ำอยู่ที่'+ hydration);
             speak(' เปอร์เซ็นต์โปรดดื่มน้ำทันทีครับ ');
         } else if (glucose > 110)
             {
             speak('วิเคราะห์เสร็จแล้วครับ ระดับน้ำตาลในเหงื่อค่อนข้างสูง  อยู่ที่ '+ glucose);
             speak(' มิลลิกรัมต่อเดซิลิตรครับ ');
         } else {
-            speak('วิเคราะห์เสร็จเรียบร้อย สภาวะร่างกายของคุณปกติดีครับ');
+            speak('วิเคราะห์เสร็จเรียบร้อย สภาวะร่างกายของคุณ'+ name +'ปกติดีครับ');
         }
 
     }, 1500);
 }
+window.addEventListener('load', () => {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        document.getElementById("loginOverlay").style.display = "none";
+        
+        // ดึงชื่อที่เคยเก็บไว้มาแสดงผลด้วย
+        const savedName = localStorage.getItem("currentUser");
+        if(savedName) {
+            document.getElementById("userNameDisplay").innerText = savedName;
+        }
+    }
+});
